@@ -1,4 +1,4 @@
-# Sukhodolskaya-manual-measuring
+# Sukhodolskaya's-manual-measuring
 
 This is a tool for morphometric beetle measurement. It's purposed for manual measuring input simplification.
 

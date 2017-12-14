@@ -1,4 +1,4 @@
-# Sukhodolskaya's-manual-measuring
+# Manual Carabid morphometric measurement for method by Sukhodolskay
 
 This is a tool for morphometric beetle measurement. It's purposed for manual measuring input simplification.
 

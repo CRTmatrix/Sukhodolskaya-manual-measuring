@@ -21,4 +21,7 @@ Double RMB click could discard measurements of the current beetle. 'V' will disc
 
 Screen resolution, key input lag and workaround for floats of some localisations are hardcoded, yet can be found in the start of the source code and changed easily.
 
-For any other details, reading the source code is recommended.
+NOTE FOR WIN 10 USERS:
+If your screen is set to over 100% scaling, for proper operation either disabling compatibility for high DPI for python or setting scaling to 100% are recommended.
+
+For any other details, just read the source code.

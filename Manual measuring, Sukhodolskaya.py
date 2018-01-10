@@ -3,7 +3,7 @@ import numpy as np,cv2,os,copy,math,ctypes
 badtriviafractionworkaroundvar=False
 Latency=300
 user32=ctypes.windll.user32;user32.SetProcessDPIAware()
-Width,Height=user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+Width,Height=user32.GetSystemMetrics(0), user32.GetSystemMetrics(1); print Width,type(Width),Height,type(Height)
 Pressed=None
 
 def addressfix(address):

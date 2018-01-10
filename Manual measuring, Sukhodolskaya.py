@@ -1,14 +1,17 @@
 import numpy as np,cv2,os,copy,math,ctypes
 
-Latency=300
 badtriviafractionworkaroundvar=False
+Latency=300
 user32=ctypes.windll.user32;user32.SetProcessDPIAware()
-[Width,Height]=[user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)]
+Width,Height=user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 Pressed=None
 
-def addressfix(address):#redundant?
-    fixedaddress=address
-    '''for i in range(len(address)):
+def addressfix(address):
+    if address[0] and address[len(address)-1] in ('\'','\"'):
+        fixedaddress=address[1:len(address)-1]
+    else:
+        fixedaddress=address
+    '''for i in range(len(address)):#redundant?
         if address[i]=='\\':
             fixedaddress=fixedaddress[:i]+'/'+fixedaddress[i+1:]'''
     return fixedaddress

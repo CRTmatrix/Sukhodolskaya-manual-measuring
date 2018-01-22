@@ -15,7 +15,7 @@ Measuring process is composed of subsequent steps:
 3. Setting 10 mm scale on fiducials.
 Measure distance placement in order of 'A','B','V','G','D' and 'E' (Cyrillic transliteration) mit double LMB click, having 14 LM (including scale) saved. Landmark order is not significant. Results in output table will have rows and anterior/leftmost put first.
 'S' button is utilized for calling current animal's sex input and writing results down into the table thereafter. 
-Double RMB click could discard most recent measurement of the current beetle. 'V' will discard them alongside with the scale ('\*\' will mark new denotations).
+Double RMB click could discard most recent measurement of the current beetle and it's marking (might accidently remove other as well, better watch numeration in console). 'V' will discard them alongside with the scale ('\*\' will mark new denotations).
 'Q' will switch to the next photo and 'T' will iterate over current one once again (comes handy for badly trimmed and too large images)
 4. After either the last image is measured or 'P' is pressed (works during trimming as well) process will stop.
 

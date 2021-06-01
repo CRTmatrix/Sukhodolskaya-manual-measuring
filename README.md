@@ -6,9 +6,9 @@ For more detailed description read (Russian):
 http://www.dissercat.com/content/dinamika-ekologicheskoi-struktury-populyatsii-zhuzhelits-zonalnykh-i-intrazonalnykh-ekosiste
 http://old.kpfu.ru/uni/sank/db/filebase/files/871
 
-It was made to run and tested on Python 2.7.13 with numpy 1.11.3 and openCV 3.1. Proper operation on other versions is not granted, yet expected.
+It was made to run and tested on Python 3.6 or later with numpy 1.11.3 and openCV 3.1. Proper operation on other versions is not granted, yet expected.
 
-Measuring process is composed of subsequent steps:
+Measuring process is composed of the following steps:
 
 1. Input directory of folder with photos (Having unicode symbols in not supported).
 2. Trimming of photo with double LMB click for top-left corner marking, double RMB for bottom-right. 'R' button for 90 degree rotation (rotate before setting corners) and 'c' for retrieval of trimmed image.
@@ -19,9 +19,9 @@ Double RMB click could discard most recent measurement of the current beetle and
 'Q' will switch to the next photo and 'T' will iterate over current one once again (comes handy for badly trimmed and too large images)
 4. After either the last image is measured or 'P' is pressed (works during trimming as well) process will stop.
 
-Key input lag and workaround for floats of some localisations are hardcoded, yet can be found in the start of the source code and changed easily.
+Key input lag and workaround for floats of some localisations are hardcoded, yet can be found in the start of the source code and changed with ease.
 
 NOTE FOR WIN 10 USERS:
 If your screen is set to over 100% scaling, for proper operation either disabling compatibility for high DPI for python or setting scaling to 100% are recommended.
 
-For any other details, just read the source code.
+For any other details, just read the source code

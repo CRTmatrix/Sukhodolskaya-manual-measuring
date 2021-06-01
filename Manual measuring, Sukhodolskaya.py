@@ -2,7 +2,7 @@ import numpy as np, cv2, os, copy, math, ctypes
 
 Latency, Pressed, SCALE = 300, None, 10.0
 user32 = ctypes.windll.user32; user32.SetProcessDPIAware()
-Width, Height = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1); print type(Width), Width, type(Height), Height
+Width, Height = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1); print(type(Width), Width, type(Height), Height)
 
 
 def address_fix(address):
@@ -78,13 +78,14 @@ def lm_points(event, lm_col, lm_row, flags, param):
         global order, table_row, error_counter, Pressed
         if event == cv2.EVENT_LBUTTONDOWN and order < 14:
             order += 1
-            print 'LM_#'+str(order), lm_row, lm_col
+            print('LM_#'+str(order), lm_row, lm_col)
             if order <= 14:
                 table_row.extend([float(lm_row), float(lm_col)])
         elif event == cv2.EVENT_RBUTTONDBLCLK:
-            if order <= 2 and len(table_row) <= 9:
-                print 'No measuring to discard for the current beetle'
+            if order <= 2 or len(table_row) <= 9:
+                print('No measuring to discard for the current beetle')
             else:
+                print('LM_#' + str(order) + '\'s discarded')
                 table_row = table_row[0:len(table_row)-2]
                 order -= 1
 
@@ -95,15 +96,15 @@ def trim(event, col, row, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         warning = False
         l, t = col, row
-        print 'top-left', t, l
+        print('top-left', t, l)
     elif event == cv2.EVENT_RBUTTONDOWN:
         r, b = col, row
         warning = False
-        print 'bottom-right', b, r
+        print('bottom-right', b, r)
     if (t > b or l > r) and warning is False:
-        print 'Mixed up corners!'
+        print('Mixed up corners!')
     elif (t == b or l == r) and warning is False:
-        print 'No area selected!'
+        print('No area selected!')
 
 
 table = [['Photo', 'Screen width', 'Screen height',
@@ -124,17 +125,17 @@ for a in measureKeys:
 
 while True:
     try:
-        directory = address_fix(r'' + raw_input('Folder with your images:'))
+        directory = address_fix(r'' + input('Folder with your images:'))
         photos = [a for a in os.listdir(directory) if file_type(a) is True]
         break
     except Exception as WindowsError:
-        print 'Wrong folder directory, repeat input.'
+        print('Wrong folder directory, repeat input.')
 global break_var, skip_var
 break_var, skip_var, Photo_num = False, False, 0
 while True:
     if Photo_num >= len(photos) or break_var is True:
         break
-    photo_dir = directory + '/' + photos[Photo_num]; print photo_dir
+    photo_dir = directory + '/' + photos[Photo_num]; print(photo_dir)
     img = cv2.imread(photo_dir, 1)
     imgdsc = downscale(img)
     cv2.namedWindow(photos[Photo_num])
@@ -171,7 +172,7 @@ while True:
     else:
         l1, r1, t1, b1 = int(l*1/ratio), int(r*1/ratio), int(t*1/ratio), int(b*1/ratio)
         trimmed = downscale(img[t1:b1, l1:r1])
-        print 'Trimmed image shape is', trimmed.shape, '; view scale ratio ' + str(ratio)
+        print('Trimmed image shape is', trimmed.shape, '; view scale ratio ' + str(ratio))
 
         error_counter, order, table_row = 0, 0, [photos[Photo_num], Width, Height, t1, l1, b1, r1]
         cv2.namedWindow(photos[Photo_num])
@@ -209,31 +210,30 @@ while True:
                         table = [a for a in table if table_row[7:11] != a[7:11]]
                         table_row, order = table_row[:7], 0
                         write_down(table, directory)
-                        print 'Scale and the associated beetles\' measures are reset'
+                        print('Scale and the associated beetles\' measures are reset')
                     elif order <= 2:
                         order, table_row = 0, table_row[:7]
                         error_counter += 1
-                        print 'Scale is reset'
+                        print('Scale is reset')
                     elif order == 0:
-                        print 'No scale is set yet'
+                        print('No scale is set yet')
                     Pressed = None
                 elif Pressed == ord('s') or Pressed == ord('S'):
                     if order < 14:
-                        print 'Measuring is unfinished'
+                        print('Measuring is unfinished')
                     else:
-                        sex = raw_input('beetle\'s sex:')
+                        sex = input('beetle\'s sex:')
                         table_row.append(sex + '\n')
                         table.append(table_row)
                         write_down(table, directory)  # safe and ugly
                         order = 2
-                        print table_row  # just for debugging
                         table_row = table_row[:11]
-                        print 'Proceed to the next beetle'
+                        print('Proceed to the next beetle')
                         Pressed = None
                 elif 2 <= order <= 12 and order % 2 == 0 and Pressed == ord('z') or Pressed == ord('Z'):
                     table_row.extend([0, 0, 0, 0])
                     order += 2
-                    print 'LM_#' + str(order-1) + ' 0 0\n', 'LM_#' + str(order) + ' 0 0'
+                    print('LM_#' + str(order-1) + ' 0 0\n', 'LM_#' + str(order) + ' 0 0')
                     Pressed = None
                 elif Pressed == ord('p') or Pressed == ord('P'):
                     break_var = True
